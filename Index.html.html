@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediaFlow | Next-Gen Growth & Design Agency</title>
+    <style>
+        /* --- CORE DESIGN SYSTEM --- */
+        :root {
+            --bg-main: #ffffff;
+            --bg-subtle: #f8fafc;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --blue-accent: #0000ff; /* Matched electric blue from logo */
+            --blue-hover: #0000cc;
+            --blue-light: #f0f3ff;
+            --border-color: #e2e8f0;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 30px -10px rgba(0, 0, 255, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- NAVIGATION --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.85rem 2rem;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .brand-logo svg {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+        }
+
+        .brand-logo span {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--blue-accent);
+        }
+
+        .nav-cta {
+            background-color: var(--blue-accent);
+            color: #ffffff !important;
+            padding: 0.65rem 1.4rem;
+            border-radius: 8px;
+            font-weight: 600 !important;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 255, 0.2);
+        }
+
+        .nav-cta:hover {
+            background-color: var(--blue-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(0, 0, 255, 0.3);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 11rem 2rem 5rem;
+            max-width: 1280px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--blue-light);
+            color: var(--blue-accent);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(0, 0, 255, 0.15);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1.5px;
+            color: var(--text-primary);
+        }
+
+        .hero h1 span {
+            color: var(--blue-accent);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 720px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-primary {
+            background-color: var(--blue-accent);
+            color: #ffffff;
+            padding: 0.95rem 2.2rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(0, 0, 255, 0.25);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--blue-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--bg-subtle);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 0.95rem 2rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: #f1f5f9;
+        }
+
+        /* --- WHY CHOOSE US / VALUE PROPOSITION SECTION --- */
+        .why-us {
+            max-width: 1280px;
+            margin: 2rem auto 6rem;
+            padding: 0 2rem;
+        }
+
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            background: var(--bg-subtle);
+            padding: 2.5rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+        }
+
+        .why-card {
+            text-align: left;
+            padding: 1rem;
+        }
+
+        .why-icon {
+            font-size: 1.5rem;
+            color: var(--blue-accent);
+            margin-bottom: 0.75rem;
+            display: inline-block;
+        }
+
+        .why-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.35rem;
+            color: var(--text-primary);
+        }
+
+        .why-card p {
+            font-size: 0.925rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* --- SERVICES SECTION --- */
+        .services {
+            padding: 6rem 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.8px;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: #ffffff;
+            padding: 3rem 2.5rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .service-card:hover {
+            border-color: var(--blue-accent);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .service-tag {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--blue-accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
+        }
+
+        .service-features li {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .service-features li::before {
+            content: "✓";
+            color: var(--blue-accent);
+            font-weight: bold;
+        }
+
+        /* --- WORK / PROCESS SECTION --- */
+        .process {
+            background-color: var(--bg-subtle);
+            padding: 6rem 2rem;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .process-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+        }
+
+        .step-num {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--blue-accent);
+            background: var(--blue-light);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .process-step h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .process-step p {
+            font-size: 0.925rem;
+            color: var(--text-secondary);
+        }
+
+        /* --- CONTACT SECTION --- */
+        .contact {
+            padding: 6rem 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .contact-info h2 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .contact-info p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .direct-contacts {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .contact-form {
+            background: #ffffff;
+            padding: 3rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-md);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            color: var(--text-primary);
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--blue-accent);
+            box-shadow: 0 0 0 3px rgba(0, 0, 255, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: var(--blue-accent);
+            color: #ffffff;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--blue-hover);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 3rem 2rem;
+            background-color: var(--bg-subtle);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .footer-copy {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 968px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .hero-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+            .btn-primary, .btn-secondary {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER / NAV -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="brand-logo">
+                <svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="500" height="500" rx="100" fill="#F4F7FC"/>
+                    <g transform="translate(15, 10)">
+                        <path d="M210 130 C222 130 231 137 236 148 L152 352 C147 363 138 370 126 370 H60 C48 370 39 363 34 352 L118 148 C123 137 132 130 144 130 H210 Z" fill="#0000FF"/>
+                        <path d="M315 130 C327 130 336 137 341 148 L257 352 C252 363 243 370 231 370 H165 C153 370 144 363 139 352 L223 148 C228 137 237 130 249 130 H315 Z" fill="#0000FF"/>
+                        <path d="M420 130 C432 130 441 137 446 148 L362 352 C357 363 348 370 336 370 H270 C258 370 249 363 244 352 L328 148 C333 137 342 130 354 130 H420 Z" fill="#0000FF"/>
+                        <path d="M152 312 L172 262 H136 C129 262 125 257 127 251 L133 236 C135 230 142 225 149 225 H208 C215 225 218 221 216 215 C211 202 185 186 160 186 H328 C365 186 385 208 370 234 C355 260 306 280 236 280 C198 280 178 290 170 305 L167 312 C165 316 158 316 152 312 Z" fill="#F4F7FC"/>
+                    </g>
+                </svg>
+                <span>MediaFlow</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#contact" class="nav-cta">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-badge">⚡ Next-Generation Media Agency</div>
+        <h1>High-Impact Strategy & <span>Digital Experiences</span></h1>
+        <p>We combine design engineering, content strategy, and performance media to help ambitious brands launch and scale faster.</p>
+        <div class="hero-actions">
+            <a href="#contact" class="btn-primary">Start a Project</a>
+            <a href="#services" class="btn-secondary">Explore Services</a>
+        </div>
+    </section>
+
+    <!-- REPLACED SECTION: WHY CHOOSE US -->
+    <div class="why-us">
+        <div class="why-us-grid">
+            <div class="why-card">
+                <span class="why-icon">⚡</span>
+                <h4>Agile & Rapid</h4>
+                <p>Fast turnaround times without red tape or bureaucratic delays.</p>
+            </div>
+            <div class="why-card">
+                <span class="why-icon">🎯</span>
+                <h4>Tailored Solutions</h4>
+                <p>No cookie-cutter templates. Every strategy is built from scratch for your goals.</p>
+            </div>
+            <div class="why-card">
+                <span class="why-icon">🤝</span>
+                <h4>Direct Collaboration</h4>
+                <p>Work directly with the core team building your assets, not middle managers.</p>
+            </div>
+            <div class="why-card">
+                <span class="why-icon">🚀</span>
+                <h4>Modern Tech Stack</h4>
+                <p>Leveraging cutting-edge design tools and modern performance channels.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="services">
+        <div class="section-header">
+            <h2>Our Core Capabilities</h2>
+            <p>End-to-end media and design solutions engineered for rapid scalability.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <span class="service-tag">Growth</span>
+                <h3>Performance Media</h3>
+                <p>Data-driven ad management and campaign strategies optimized across Google, Meta, and modern video channels.</p>
+                <ul class="service-features">
+                    <li>Paid Search & Social Campaigns</li>
+                    <li>Audience Targeting & Retargeting</li>
+                    <li>ROAS Optimization</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <span class="service-tag">Design</span>
+                <h3>UI/UX & Web Design</h3>
+                <p>Clean, high-converting digital interfaces built to align your product vision with modern user expectations.</p>
+                <ul class="service-features">
+                    <li>Custom Landing Pages</li>
+                    <li>Figma Design Systems</li>
+                    <li>Mobile-First Optimization</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <span class="service-tag">Content</span>
+                <h3>Creative Strategy</h3>
+                <p>Engaging video production, ad creatives, and high-converting copy that turns visitors into brand advocates.</p>
+                <ul class="service-features">
+                    <li>Ad Creative Development</li>
+                    <li>Brand Messaging & Copywriting</li>
+                    <li>Short-Form Video Production</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS SECTION -->
+    <section id="process" class="process">
+        <div class="process-container">
+            <div class="section-header">
+                <h2>How We Work</h2>
+                <p>A streamlined methodology designed to get your project moving fast.</p>
+            </div>
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-num">01</div>
+                    <h4>Discovery</h4>
+                    <p>We analyze your business metrics, target market, and existing media assets.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">02</div>
+                    <h4>Strategy</h4>
+                    <p>We build a tailored roadmap identifying your highest-leveraged growth channels.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">03</div>
+                    <h4>Execution</h4>
+                    <p>Our team designs, builds, and launches high-converting assets rapidly.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">04</div>
+                    <h4>Optimization</h4>
+                    <p>Continuous testing and iteration to maximize ROI and keep scaling.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="contact">
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h2>Ready to build something iconic?</h2>
+                <p>Let's talk about your project goals and see how MediaFlow can help accelerate your brand.</p>
+                <div class="direct-contacts">
+                    <div class="contact-item">✉️ hello@mediaflow.agency</div>
+                    <div class="contact-item">⚡ Response time: Under 24 hours</div>
+                </div>
+            </div>
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent successfully!');">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Work Email</label>
+                    <input type="email" id="email" placeholder="john@company.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Project Details</label>
+                    <textarea id="message" rows="4" placeholder="Tell us about your project, timeline, and goals..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <a href="#" class="brand-logo">
+                <svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="500" height="500" rx="100" fill="#F4F7FC"/>
+                    <g transform="translate(15, 10)">
+                        <path d="M210 130 C222 130 231 137 236 148 L152 352 C147 363 138 370 126 370 H60 C48 370 39 363 34 352 L118 148 C123 137 132 130 144 130 H210 Z" fill="#0000FF"/>
+                        <path d="M315 130 C327 130 336 137 341 148 L257 352 C252 363 243 370 231 370 H165 C153 370 144 363 139 352 L223 148 C228 137 237 130 249 130 H315 Z" fill="#0000FF"/>
+                        <path d="M420 130 C432 130 441 137 446 148 L362 352 C357 363 348 370 336 370 H270 C258 370 249 363 244 352 L328 148 C333 137 342 130 354 130 H420 Z" fill="#0000FF"/>
+                        <path d="M152 312 L172 262 H136 C129 262 125 257 127 251 L133 236 C135 230 142 225 149 225 H208 C215 225 218 221 216 215 C211 202 185 186 160 186 H328 C365 186 385 208 370 234 C355 260 306 280 236 280 C198 280 178 290 170 305 L167 312 C165 316 158 316 152 312 Z" fill="#F4F7FC"/>
+                    </g>
+                </svg>
+                <span>MediaFlow</span>
+            </a>
+            <div class="footer-copy">
+                &copy; 2026 MediaFlow Agency. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
